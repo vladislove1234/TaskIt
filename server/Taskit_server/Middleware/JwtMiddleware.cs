@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Taskit_server.Services.Interfaces;
 
 namespace Taskit_server.Middleware
 {

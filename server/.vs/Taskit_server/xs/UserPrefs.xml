@@ -1,21 +1,37 @@
 ﻿<Properties StartupConfiguration="{21B58C76-8FAA-48D7-8DF7-A37B24816F29}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Taskit_server/Services/Repository.cs">
     <Files>
-      <File FileName="Taskit_server/Program.cs" Line="1" Column="1" />
-      <File FileName="Taskit_server/Startup.cs" />
-      <File FileName="Taskit_server/Middleware/JwtMiddleware.cs" />
-      <File FileName="Taskit_server/AuthorizeAtribute.cs" />
-      <File FileName="Taskit_server/appsettings.Development.json" />
-      <File FileName="Taskit_server/appsettings.json" />
+      <File FileName="Taskit_server/Program.cs" Line="16" Column="1" />
+      <File FileName="Taskit_server/Startup.cs" Line="32" Column="62" />
+      <File FileName="Taskit_server/Db/DataContext.cs" />
+      <File FileName="Taskit_server/Middleware/JwtMiddleware.cs" Line="32" Column="1" />
+      <File FileName="Taskit_server/Model/Entities/Team.cs" />
+      <File FileName="Taskit_server/Services/Repository.cs" Line="20" Column="1" />
       <File FileName="Taskit_server/Services/Interfaces/IRepository.cs" />
-      <File FileName="Taskit_server/Services/Repository.cs" Line="4" Column="41" />
+      <File FileName="Taskit_server/AuthorizeAtribute.cs" />
+      <File FileName="Taskit_server/Services/UserService.cs" />
+      <File FileName="Taskit_server/Controllers/UserController.cs" Line="22" Column="1" />
+      <File FileName="Taskit_server/Model/Entities/UserModels/UserRegistrationRequest.cs" Line="5" Column="6" />
+      <File FileName="Taskit_server/Mapping/UserProfile.cs" Line="11" Column="29" />
+      <File FileName="Taskit_server/Model/Entities/UserModels/UserAuthentificationRequest.cs" Line="6" Column="18" />
+      <File FileName="Taskit_server/appsettings.json" Line="4" Column="47" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Taskit_server" expanded="True">
             <Node name="Taskit_server" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Db" expanded="True" />
+              <Node name="Mapping" expanded="True" />
+              <Node name="Middleware" expanded="True" />
+              <Node name="Model" expanded="True">
+                <Node name="Entities" expanded="True">
+                  <Node name="UserModels" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Services" expanded="True">
+                <Node name="Interfaces" expanded="True" />
                 <Node name="Repository.cs" selected="True" />
               </Node>
             </Node>
@@ -28,7 +44,10 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/vlad/Documents/GitHub/TaskIt/server/Taskit_server/Controllers/UserController.cs" relfile="Taskit_server/Controllers/UserController.cs" line="47" column="1" />
+      <Breakpoint file="/Users/vlad/Documents/GitHub/TaskIt/server/Taskit_server/Controllers/UserController.cs" relfile="Taskit_server/Controllers/UserController.cs" line="47" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Taskit_server.Services.Interfaces
 {
-    public interface IRepository<T>  
+    public interface IRepository<T>  where T : class
     {
         IEnumerable<T> GetAll();
         T GetById(int Id);
