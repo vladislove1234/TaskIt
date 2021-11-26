@@ -6,7 +6,7 @@ Welcome to the main repository of _TaskIt_.
 
 ## How to run
 ### _Installation_
-This project is build with C# and [ASP.NET](https://dotnet.microsoft.com/download), so you need to install both these things.
+This project is build with C# and [ASP.NET](https://dotnet.microsoft.com/download/dotnet/3.1), so you need to install both these things.
 Also, this project uses [Node.js and npm](https://nodejs.org/en/). You have to install this too.
 
 ### _Start_
