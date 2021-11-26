@@ -73,3 +73,16 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+
+# IDE's files
+.idea
+*.sublime*
+.vscode
+.vs 
+
+# utils
+*.log*
+node_modules/
+
+# Build folder
+client/dist/
