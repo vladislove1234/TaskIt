@@ -1,0 +1,41 @@
+.login__modal-form--signup {
+  width: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .login__modal--signup {
+    &::before,
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  
+      display: block;
+  
+      width: 159px;
+      height: 169px;
+  
+      content: '';
+    }
+  
+    &::before {
+      border-radius: 64px 0 64px 0;
+      background: #EEE;
+    }
+  
+    &::after {
+      background: url("../img/page-corner-login.svg") no-repeat center center;
+  
+      filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.25));
+    }
+  }
+
+  .login__modal-column {
+    margin: 0 5px;
+  }
+
+  .login__modal-column-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}

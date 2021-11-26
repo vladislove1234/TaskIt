@@ -1,0 +1,57 @@
+:root {
+  --bg-color: #38436A;
+  --text-color: #38436A;
+  --active-color: #F9A75C;
+  --contrast-color: #FFF;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Poppins Light"), local("Poppins-Light"), url("../fonts/Poppins-Light.woff2") format("woff2"), url("../fonts/Poppins-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Poppins Regular"), local("Poppins-Regular"), url("../fonts/Poppins-Regular.woff2") format("woff2"), url("../fonts/Poppins-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Poppins SemiBold"), local("Poppins-SemiBold"), url("../fonts/Poppins-SemiBold.woff2") format("woff2"), url("../fonts/Poppins-SemiBold.woff") format("woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, Roboto, Montserrat, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
