@@ -1,42 +1,43 @@
 ﻿<Properties StartupConfiguration="{21B58C76-8FAA-48D7-8DF7-A37B24816F29}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Taskit_server/Controllers/TeamController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Taskit_server/Model/Entities/TaskColumn.cs">
     <Files>
       <File FileName="Taskit_server/Program.cs" Line="16" Column="1" />
       <File FileName="Taskit_server/Startup.cs" />
-      <File FileName="Taskit_server/Db/DataContext.cs" Line="15" Column="10" />
-      <File FileName="Taskit_server/Middleware/JwtMiddleware.cs" Line="27" Column="63" />
-      <File FileName="Taskit_server/Model/Entities/Team.cs" Line="12" Column="39" />
-      <File FileName="Taskit_server/Services/Repository.cs" Line="26" Column="73" />
-      <File FileName="Taskit_server/Services/Interfaces/IRepository.cs" Line="14" Column="6" />
-      <File FileName="Taskit_server/AuthorizeAtribute.cs" />
+      <File FileName="Taskit_server/Db/DataContext.cs" Line="20" Column="41" />
+      <File FileName="Taskit_server/Middleware/JwtMiddleware.cs" Line="53" Column="1" />
+      <File FileName="Taskit_server/Model/Entities/Team.cs" Line="13" Column="1" />
+      <File FileName="Taskit_server/Services/Repository.cs" Line="41" Column="35" />
+      <File FileName="Taskit_server/Services/Interfaces/IRepository.cs" Line="13" Column="18" />
+      <File FileName="Taskit_server/AuthorizeAtribute.cs" Line="15" Column="30" />
       <File FileName="Taskit_server/Services/UserService.cs" Line="48" Column="50" />
       <File FileName="Taskit_server/Controllers/UserController.cs" Line="11" Column="24" />
       <File FileName="Taskit_server/Model/Entities/UserModels/UserRegistrationRequest.cs" Line="10" Column="31" />
-      <File FileName="Taskit_server/Mapping/UserProfile.cs" />
-      <File FileName="Taskit_server/Model/Entities/UserModels/UserAuthentificationRequest.cs" />
+      <File FileName="Taskit_server/Mapping/UserProfile.cs" Line="24" Column="74" />
+      <File FileName="Taskit_server/Model/Entities/UserModels/UserAuthentificationRequest.cs" Line="6" Column="18" />
       <File FileName="Taskit_server/appsettings.json" Line="4" Column="95" />
-      <File FileName="Taskit_server/Migrations/20211127075058_Initial.cs" Line="1" Column="1" />
-      <File FileName="Taskit_server/Model/Entities/BaseEntity.cs" Line="6" Column="20" />
-      <File FileName="Taskit_server/Model/Entities/UserModels/User.cs" Line="7" Column="6" />
-      <File FileName="Taskit_server/Model/Entities/Role.cs" Line="9" Column="39" />
-      <File FileName="Taskit_server/Model/Entities/Task.cs" Line="22" Column="6" />
-      <File FileName="Taskit_server/Model/Entities/TaskColumn.cs" Line="11" Column="53" />
-      <File FileName="Taskit_server/Controllers/TeamController.cs" Line="4" Column="39" />
+      <File FileName="Taskit_server/Model/Entities/UserModels/User.cs" Line="22" Column="1" />
+      <File FileName="Taskit_server/Model/Entities/Role.cs" Line="14" Column="42" />
+      <File FileName="Taskit_server/Model/Entities/Task.cs" Line="1" Column="1" />
+      <File FileName="Taskit_server/Model/Entities/TaskColumn.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Taskit_server" expanded="True">
             <Node name="Taskit_server" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="TeamController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Db" expanded="True" />
               <Node name="Mapping" expanded="True" />
               <Node name="Middleware" expanded="True" />
-              <Node name="Migrations" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20211127132016_try8.cs" expanded="True" />
+              </Node>
               <Node name="Model" expanded="True">
-                <Node name="Entities" expanded="True" />
+                <Node name="Entities" expanded="True">
+                  <Node name="UserModels" expanded="True" />
+                  <Node name="TaskColumn.cs" selected="True" />
+                </Node>
+                <Node name="Helpers" expanded="True" />
               </Node>
               <Node name="Services" expanded="True">
                 <Node name="Interfaces" expanded="True" />

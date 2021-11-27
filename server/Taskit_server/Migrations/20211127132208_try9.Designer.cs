@@ -10,8 +10,8 @@ using Taskit_server.Db;
 namespace Taskit_server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211127090753_TeamsInit")]
-    partial class TeamsInit
+    [Migration("20211127132208_try9")]
+    partial class try9
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,64 +23,65 @@ namespace Taskit_server.Migrations
 
             modelBuilder.Entity("Taskit_server.Model.Entities.Role", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
                         .UseIdentityColumn();
 
                     b.Property<string>("Color")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("TaskColumnId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("RolesId")
+                        .HasColumnType("int");
 
-                    b.Property<long?>("TaskId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("TeamId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskColumnId");
+                    b.HasIndex("RolesId");
 
                     b.HasIndex("TaskId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("Role");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.Task", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
                         .UseIdentityColumn();
 
-                    b.Property<long?>("AuthorId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
 
-                    b.Property<long?>("ColumnId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("ColumnId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Deadline")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("State")
                         .HasColumnType("int");
 
-                    b.Property<long?>("TeamId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("TasksId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -88,39 +89,43 @@ namespace Taskit_server.Migrations
 
                     b.HasIndex("ColumnId");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TasksId");
 
                     b.ToTable("Task");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.TaskColumn", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ColumnsId")
+                        .HasColumnType("int");
 
-                    b.Property<long?>("TeamId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("ColumnsId");
 
                     b.ToTable("TaskColumn");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.Team", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
                         .UseIdentityColumn();
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -130,48 +135,54 @@ namespace Taskit_server.Migrations
 
             modelBuilder.Entity("Taskit_server.Model.Entities.UserModels.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
                         .UseIdentityColumn();
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("FirendsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("TaskId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UsersId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskId");
+                    b.HasIndex("FirendsId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TeamUser", b =>
                 {
-                    b.Property<long>("TeamsId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TeamsId")
+                        .HasColumnType("int");
 
-                    b.Property<long>("UsersId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
 
                     b.HasKey("TeamsId", "UsersId");
 
@@ -184,32 +195,32 @@ namespace Taskit_server.Migrations
                 {
                     b.HasOne("Taskit_server.Model.Entities.TaskColumn", null)
                         .WithMany("Roles")
-                        .HasForeignKey("TaskColumnId");
+                        .HasForeignKey("RolesId");
 
                     b.HasOne("Taskit_server.Model.Entities.Task", null)
                         .WithMany("Roles")
                         .HasForeignKey("TaskId");
-
-                    b.HasOne("Taskit_server.Model.Entities.Team", "Team")
-                        .WithMany()
-                        .HasForeignKey("TeamId");
-
-                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.Task", b =>
                 {
                     b.HasOne("Taskit_server.Model.Entities.UserModels.User", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Taskit_server.Model.Entities.TaskColumn", "Column")
-                        .WithMany("Tasks")
+                        .WithMany()
                         .HasForeignKey("ColumnId");
+
+                    b.HasOne("Taskit_server.Model.Entities.TaskColumn", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("TasksId");
 
                     b.HasOne("Taskit_server.Model.Entities.Team", null)
                         .WithMany("Tasks")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TasksId");
 
                     b.Navigation("Author");
 
@@ -220,18 +231,18 @@ namespace Taskit_server.Migrations
                 {
                     b.HasOne("Taskit_server.Model.Entities.Team", null)
                         .WithMany("TaskColumns")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("ColumnsId");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.UserModels.User", b =>
                 {
-                    b.HasOne("Taskit_server.Model.Entities.Task", null)
-                        .WithMany("Users")
-                        .HasForeignKey("TaskId");
-
                     b.HasOne("Taskit_server.Model.Entities.UserModels.User", null)
                         .WithMany("Friends")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("FirendsId");
+
+                    b.HasOne("Taskit_server.Model.Entities.Task", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UsersId");
                 });
 
             modelBuilder.Entity("TeamUser", b =>

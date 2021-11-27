@@ -11,7 +11,13 @@ namespace Taskit_server.Db
         public DbSet<Team> Teams { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
+           
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(p => p.Teams)
+                .WithMany(b => b.Users);
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Taskit_server.Db;
 
 namespace Taskit_server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211127131743_try7")]
+    partial class try7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,11 +46,16 @@ namespace Taskit_server.Migrations
                     b.Property<int?>("TaskId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RolesId");
 
                     b.HasIndex("TaskId");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Role");
                 });
@@ -198,6 +205,14 @@ namespace Taskit_server.Migrations
                     b.HasOne("Taskit_server.Model.Entities.Task", null)
                         .WithMany("Roles")
                         .HasForeignKey("TaskId");
+
+                    b.HasOne("Taskit_server.Model.Entities.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.Task", b =>

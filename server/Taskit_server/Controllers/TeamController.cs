@@ -7,6 +7,8 @@ using Taskit_server.Services.Interfaces;
 
 namespace Taskit_server.Controllers
 {
+    [ApiController]
+    [Route("api/team")]
     public class TeamController : Controller
     {
         private readonly IRepository<Team> _teamRepository;
@@ -18,6 +20,7 @@ namespace Taskit_server.Controllers
         }
         [Authorize]
         [HttpGet]
+        [Route("get_teams")]
         public IActionResult GetTeams()
         {
             var user = (User)HttpContext.Items["User"];
