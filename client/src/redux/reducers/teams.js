@@ -1,4 +1,4 @@
-import {TEAMS_SELECT_TEAM} from '../types';
+import {TEAMS_ADD_TEAMS, TEAMS_SELECT_TEAM} from '../types';
 
 const initialState = {
   teams: [{
@@ -25,6 +25,11 @@ export default (state = initialState, action) => {
       ...state,
       activeTeam: action.payload,
     };
+  
+  case TEAMS_ADD_TEAMS:
+    const teams = action.payload || [];
+  
+    return {...state, teams};
   };
 
   return state;

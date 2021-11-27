@@ -1,12 +1,12 @@
 import {USER_LOGIN, USER_LOGOUT} from '../types';
 
 const initialState = {
-  name: `Victor`,
-  surname: `Muryn`,
+  firstName: ``,
+  lastName: ``,
   token: ``,
-  username: `hellcaster`,
+  username: ``,
   email: ``,
-  isAuth: true,
+  isAuth: false,
 };
 
 const userStorageName = `user`;

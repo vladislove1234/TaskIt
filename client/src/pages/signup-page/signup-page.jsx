@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
+
+import {ActionCreator} from '../../redux/action-creator';
+
+import api from '../../utils/api';
 
 import './signup-page.scss';
 
 const SignupPage = () => {
+  const dispatch = useDispatch();
+
   const [error, setError] = useState(``);
   const [state, setState] = useState({
-    name: ``,
-    surname: ``,
+    firstname: ``,
+    lastname: ``,
     username: ``,
     email: ``,
     password: ``,
@@ -30,8 +37,17 @@ const SignupPage = () => {
     event.preventDefault();
 
     if (state.password !== state.passwordRepeat) {
-      setError(`passwords are not the same.`);
+      return setError(`passwords are not the same.`);
     }
+
+    const {passwordRepeat, ...form} = state;
+
+
+    api.post(`/user/register`, form)
+      .then(({data}) => {
+        dispatch(ActionCreator.login(data));
+      })
+      .catch(({response}) => setError(response));
   };
 
   return (
@@ -53,7 +69,7 @@ const SignupPage = () => {
                 <input
                   required
                   type="text"
-                  name="name"
+                  name="firstname"
                   onChange={onChange}
                   value={state.name}
                   placeholder="name"
@@ -63,7 +79,7 @@ const SignupPage = () => {
                 <input
                   required
                   type="text"
-                  name="surname"
+                  name="lastname"
                   onChange={onChange}
                   value={state.surname}
                   placeholder="surname"

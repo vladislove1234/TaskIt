@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 
 import MainPage from '../pages/main-page';
 import LoginPage from '../pages/login-page';
@@ -11,6 +11,7 @@ export const useRoutes = (isAuth) => {
     return (
       <Routes>
         <Route path="/" element={<AppPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     );
   }
@@ -20,6 +21,9 @@ export const useRoutes = (isAuth) => {
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+
+      <Route element={<Navigate to="/" />} />
+
     </Routes>
   );
 };

@@ -41,12 +41,9 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-<<<<<<< HEAD
-=======
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
->>>>>>> 8ccb8ffe2d1b5471fa5fc6e94a3bd1bef462cbd8
   </ItemGroup>
 </Project>

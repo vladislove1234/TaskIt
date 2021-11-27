@@ -7,9 +7,31 @@
   align-items: center;
 }
 
+.user-info__name-wrapper {
+  margin-left: 23px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
 .user-info__name {
   font-size: 18px;
   line-height: 27px;
   color: var(--contrast-color);
-  margin-left: 23px;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.user-info__logout {
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--contrast-color);
+  font-size: 14px;
+
+  img {
+    width: 18px;
+    margin-right: 5px;
+  }
 }

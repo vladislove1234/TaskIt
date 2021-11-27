@@ -30,6 +30,7 @@ namespace Taskit_server
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(UserProfile));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +44,12 @@ namespace Taskit_server
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x
+            .SetIsOriginAllowed(origin => true)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
 
             app.UseAuthorization();
 

@@ -1,9 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+
+import {ActionCreator} from '../../redux/action-creator';
+
+import api from '../../utils/api';
 
 import './login-page.scss';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  const [error, setError] = useState(``);
+  const [state, setState] = useState({
+    username: ``,
+    password: ``,
+  });
+
+  const onInputChange = (event) => {
+    event.preventDefault();
+
+    if (error) {
+      setError(``);
+    }
+
+    const {name, value} = event.target;
+
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    api.post(`/user/authenticate`, state)
+      .then(({data}) => dispatch(ActionCreator.login(data)))
+      .catch(({response}) => setError(response.data.message));
+  };
+
   return (
     <section className="login">
       <div className="login__modal login__modal--login">
@@ -15,22 +51,28 @@ const LoginPage = () => {
         </div>
         <div className="login__modal-content login__modal-content--login">
           <form
-            onSubmit={() => {}}
+            onSubmit={onSubmit}
             className="login__modal-form"
           >
             <input
+              required
               type="text"
               name="username"
               placeholder="username"
+              onChange={onInputChange}
               className="login__modal-input"
             />
 
             <input
+              required
               type="password"
               name="password"
               placeholder="password"
+              onChange={onInputChange}
               className="login__modal-input"
             />
+
+            {error && <p className="login__modal-error">{error}</p>}
 
             <button
               type="submit"
