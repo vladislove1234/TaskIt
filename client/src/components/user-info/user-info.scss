@@ -1,0 +1,15 @@
+.user-info {
+  background: var(--active-color);
+  padding: 17px 22px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.user-info__name {
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--contrast-color);
+  margin-left: 23px;
+}

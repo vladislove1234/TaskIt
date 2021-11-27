@@ -1,10 +1,12 @@
 import {USER_LOGIN, USER_LOGOUT} from '../types';
 
 const initialState = {
-  name: ``,
+  name: `Victor`,
+  surname: `Muryn`,
   token: ``,
-  surname: ``,
-  isAuth: false,
+  username: `hellcaster`,
+  email: ``,
+  isAuth: true,
 };
 
 const userStorageName = `user`;
@@ -26,8 +28,10 @@ export default (state = initialState, action) => {
     return {
       ...state,
       name: ``,
+      email: ``,
       token: ``,
       surname: ``,
+      username: ``,
       isAuth: false,
     };
   }

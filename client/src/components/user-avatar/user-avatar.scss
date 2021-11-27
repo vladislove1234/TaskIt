@@ -1,0 +1,21 @@
+.user-avatar {
+  border-radius: 50%;
+  background: var(--text-color);
+}
+
+.user-avatar--online {
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    background-color: #8EE96E;
+    left: 85.335534%;
+    top: 85.335534%;
+    transform: translate(-50%, -50%);
+  }
+}

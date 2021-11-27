@@ -4,11 +4,14 @@ import {Route, Routes} from 'react-router-dom';
 import MainPage from '../pages/main-page';
 import LoginPage from '../pages/login-page';
 import SignupPage from '../pages/signup-page';
+import AppPage from '../pages/app-page';
 
 export const useRoutes = (isAuth) => {
   if (isAuth) {
     return (
-      <Routes />
+      <Routes>
+        <Route path="/" element={<AppPage />} />
+      </Routes>
     );
   }
 

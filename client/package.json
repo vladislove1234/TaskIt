@@ -8,9 +8,9 @@
     "build": "echo \"Front-End Building\" && npx webpack --mode production",
     "server": "echo \"Starting Front-End server\" && npx serve ./dist -p 8080",
     "dev": "npx webpack serve --mode development --open",
-    "eslint": "eslint --ext .tsx --ext .ts --ext .jsx --ext .js src/",
+    "eslint": "npx eslint --ext .tsx --ext .ts --ext .jsx --ext .js src/",
     "start": "npm run prebuild && npm run build && npm run server",
-    "backend": "echo \"Starting Back-End\" && dotnet run --project ../server/CrocodileGame/CrocodileGame.csproj",
+    "backend": "echo \"Starting Back-End\" && dotnet run --project ../server/Taskit_server/Taskit_server.csproj",
     "frontend": "echo \"Starting Front-End\" && npm run prebuild && npm run build && npm run server",
     "app": "npx concurrently --raw --kill-others \"npm run frontend\" \"npm run backend\""
   },
@@ -28,7 +28,7 @@
     "css-loader": "^6.5.1",
     "css-mqpacker": "^7.0.0",
     "csscomb-loader": "^0.0.2",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.27.0",
     "html-webpack-plugin": "^5.5.0",
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@microsoft/signalr": "^6.0.0",
+    "axios": "^0.24.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

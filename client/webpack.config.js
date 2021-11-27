@@ -21,11 +21,13 @@ const config = {
     //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     //   'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     // },
-    // proxy: {
-    //   target: `localhost:5050/`,
-    //   changeOrigin: true,
-    //   ws: true,
-    // },
+    proxy: {
+      '/api': {
+        target: `localhost:5050/`,
+        changeOrigin: true,
+        // ws: true,
+      },
+    },
   },
 
   watchOptions: {
@@ -103,7 +105,7 @@ const config = {
     }),
 
     new WebpackBuildNotifierPlugin({
-      title: 'WORKERS!!!',
+      title: 'TaskIt!!!',
       suppressSuccess: true, // don't spam success notifications
       suppressWarning: true,
       suppressCompileStart: true,
