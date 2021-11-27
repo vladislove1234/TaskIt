@@ -14,6 +14,7 @@ namespace Taskit_server.Db
         public DbSet<Team> Teams { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
            
@@ -29,9 +30,6 @@ namespace Taskit_server.Db
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(p => p.Teams)
-                .WithMany(b => b.Users);
         }
     }
 }

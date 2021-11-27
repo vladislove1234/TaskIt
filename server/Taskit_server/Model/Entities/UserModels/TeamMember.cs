@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Taskit_server.Model.Entities.RoleModels;
 using Taskit_server.Model.Entities.TaskModels;
-using Taskit_server.Model.Entities.UserModels;
 
-namespace Taskit_server.Model.Entities.TeamModels
+namespace Taskit_server.Model.Entities.UserModels
 {
-    public class Team : BaseEntity
+    public class TeamMember : BaseEntity
     {
         [Required]
-        public string Name { get; set; }
-        [Required]
-        public virtual List<TeamMember> TeamMembers { get
-            {
-                if (_teamMembers == null)
-                    _teamMembers = new List<TeamMember>();
-                return _teamMembers;
-            }
-            set
-            {
-                _teamMembers = value;
-            }
-        }
-        private List<TeamMember> _teamMembers;
+        public int UserId { get; set; }
         [Required]
         public virtual List<Role> Roles
         {
@@ -53,6 +38,7 @@ namespace Taskit_server.Model.Entities.TeamModels
             {
                 _tasks = value;
             }
+
         }
         private List<Task> _tasks;
     }
