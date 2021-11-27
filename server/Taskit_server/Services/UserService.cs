@@ -65,6 +65,10 @@ namespace Taskit_server.Services
         {
             return _userRepository.GetById(id);
         }
+        public void Update(User user)
+        {
+            _userRepository.Update(user);
+        }
 
     }
 }

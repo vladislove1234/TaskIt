@@ -22,6 +22,11 @@
     <None Remove="Mapping\" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Model\Entities\TeamModels\" />
+    <None Remove="Model\Entities\TaskModels\" />
+    <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="Microsoft.EntityFrameworkCore.Proxies" />
+    <None Remove="Model\Entities\RoleModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -34,6 +39,9 @@
     <Folder Include="Model\Helpers\" />
     <Folder Include="Model\Entities\UserModels\" />
     <Folder Include="Mapping\" />
+    <Folder Include="Model\Entities\TeamModels\" />
+    <Folder Include="Model\Entities\TaskModels\" />
+    <Folder Include="Model\Entities\RoleModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.1" />
@@ -45,5 +53,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.1" />
   </ItemGroup>
 </Project>

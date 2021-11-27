@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Taskit_server.Model.Entities.TeamModels;
 
 namespace Taskit_server.Model.Entities.UserModels
 {
@@ -18,8 +19,8 @@ namespace Taskit_server.Model.Entities.UserModels
         [Required]
         public string Password { get; set; }
         [ForeignKey("FirendsId")]
-        public ICollection<User> Friends { get; set; }
+        public virtual List<User> Friends { get; set; }
 
-        public ICollection<Team> Teams { get; set; }
+        public virtual List<Team> Teams { get; set; }
     }
 }

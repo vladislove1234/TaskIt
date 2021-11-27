@@ -24,6 +24,13 @@ namespace Taskit_server.Mapping
                 .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dst => dst.Token, opt => opt.Ignore())
                 ;
+            CreateMap<User, UserInfo>()
+                .ForMember(dst => dst.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dst => dst.Username, opt => opt.MapFrom(src => src.Username))
+                .ForMember(dst => dst.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dst => dst.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
+                ;
         }
     }
 }
