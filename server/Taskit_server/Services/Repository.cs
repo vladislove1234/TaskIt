@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Taskit_server.Db;
+using Taskit_server.Model.Entities;
 using Taskit_server.Services.Interfaces;
 
 namespace Taskit_server.Services
 {
-    public class Repository<T>  : IRepository<T> where T : class
+    public class Repository<T>  : IRepository<T> where T : BaseEntity
     {
         private readonly DataContext _context;
         public Repository(DataContext context)
@@ -22,13 +23,22 @@ namespace Taskit_server.Services
 
         public T GetById(int Id)
         {
-            return null;
+            var result = _context.Set<T>().FirstOrDefault(x => x.Id == Id);
+
+            if (result == null)
+            {
+                //todo: need to add logger
+                return null;
+            }
+
+            return result;
         }
 
-        public Task<long> Add(T entity)
+        public async Task<long> Add(T entity)
         {
-            _context.Set<T>().Add(entity);
-            return null;
+            var result = await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return result.Entity.Id;
         }
 
     }
