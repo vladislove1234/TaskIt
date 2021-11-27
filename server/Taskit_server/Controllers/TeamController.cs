@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Taskit_server.Model.Entities;
+using Taskit_server.Model.Entities.RoleModels;
 using Taskit_server.Model.Entities.TeamModels;
 using Taskit_server.Model.Entities.UserModels;
+using Taskit_server.Model.Helpers;
 using Taskit_server.Services.Interfaces;
 
 namespace Taskit_server.Controllers
@@ -16,10 +18,12 @@ namespace Taskit_server.Controllers
     {
         private readonly IRepository<Team> _teamRepository;
         private readonly IUserService _userService;
-        public TeamController(IRepository<Team> teamRepository, IUserService userService)
+        private readonly IRepository<Role> _roleRepository;
+        public TeamController(IRepository<Team> teamRepository, IUserService userService, IRepository<Role> roleRepository)
         {
             _teamRepository = teamRepository;
             _userService = userService;
+            _roleRepository = roleRepository;
         }
         [HttpGet]
         [Route("getTeams")]
@@ -41,8 +45,10 @@ namespace Taskit_server.Controllers
             {
                 Name = request.Name
             };
-            team = _teamRepository.GetById((int)await _teamRepository.Add(team));
+            team = await _teamRepository.Add(team);
             team.Users.Add(author);
+            var adminRole = await _roleRepository.Add(new Role() { Name = "Admin", Color = ColorGenerator.GenerateColor(), IsAdmin = true });
+            team.Roles.Add(adminRole);
             _teamRepository.Update(team);
             if (author.Teams == null)
                 author.Teams = new List<Team>();

@@ -6,7 +6,7 @@ using Taskit_server.Model.Entities.UserModels;
 
 namespace Taskit_server.Model.Entities.TaskModels
 {
-    public class Task : BaseEntity
+    public class TaskAddRequest
     {
         [Required]
         public string Content { get; set; }

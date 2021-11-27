@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Taskit_server.Model.Entities.RoleModels;
 using Taskit_server.Model.Entities.UserModels;
 
 namespace Taskit_server.Model.Entities.TeamModels
@@ -23,5 +24,20 @@ namespace Taskit_server.Model.Entities.TeamModels
             }
         }
         private List<User> _users;
+        [Required]
+        public virtual List<Role> Roles
+        {
+            get
+            {
+                if (_roles == null)
+                    return new List<Role>();
+                return _roles;
+            }
+            set
+            {
+                _roles = value;
+            }
+        }
+        private List<Role> _roles;
     }
 }

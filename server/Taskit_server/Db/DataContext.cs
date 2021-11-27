@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Taskit_server.Model.Entities;
+using Taskit_server.Model.Entities.RoleModels;
+using Taskit_server.Model.Entities.TaskModels;
 using Taskit_server.Model.Entities.TeamModels;
 using Taskit_server.Model.Entities.UserModels;
 
@@ -10,6 +12,8 @@ namespace Taskit_server.Db
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Task> Tasks { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
            
