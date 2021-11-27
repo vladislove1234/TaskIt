@@ -10,12 +10,7 @@ namespace Taskit_server.Model.Entities
     {
         [Required]
         public string Name { get; set; }
-
+        [Required]
         public ICollection<User> Users { get; set; }
-        [ForeignKey("ColumnsId")]
-        public ICollection<TaskColumn> TaskColumns { get; set; }
-
-        [ForeignKey("TasksId")]
-        public ICollection<Task> Tasks { get; set; }
     }
 }
