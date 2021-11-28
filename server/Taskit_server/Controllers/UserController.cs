@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -45,11 +47,12 @@ namespace Taskit_server.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("get_all")]
-        public IActionResult GetAll()
+        [Route("getByName")]
+        public IActionResult GetByName(string name)
         {
-            var users = _userService.GetAll();
-            return Ok(users);
+            var users = _userService.GetAll().Where(u => u.Username.Contains(name)
+            || u.Email.Contains(name)).Take(10).ToList();
+            return Ok(_mapper.Map<List<User>,List<UserInfo>>(users));
         }
     }
 }
