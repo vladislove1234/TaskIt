@@ -142,8 +142,8 @@ namespace Taskit_server.Controllers
 
             var newTeamMember = await _teamMemberRepository.Add(new TeamMember() { UserId = memberId });
             team.TeamMembers.Add(newTeamMember);
-
-            var TeamMemberInfo = new TeamMemberInfo() { Name = author.Username, Roles = newTeamMember.Roles, UserId = author.Id };
+            _teamRepository.Update(team);
+            var TeamMemberInfo = new TeamMemberInfo() { Name = newUser.Username, Roles = newTeamMember.Roles, UserId = newTeamMember.Id };
             return Ok(TeamMemberInfo);
         }
         [Authorize]
