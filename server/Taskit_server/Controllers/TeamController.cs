@@ -205,7 +205,7 @@ namespace Taskit_server.Controllers
                 tasks.Add(new TaskInfo(task, teamMembersInfo));
             }
             return Ok(tasks);
-        }
+        }//всі задачі
         [Authorize]
         [HttpGet]
         [Route("{teamId}/getRoles")]
@@ -231,7 +231,7 @@ namespace Taskit_server.Controllers
                 return StatusCode(400);
 
             return Ok(team);
-        }
+        }//вся інфа по тімі
         [Authorize]
         [HttpGet]
         [Route("{teamId}/getPoints")]
@@ -251,7 +251,7 @@ namespace Taskit_server.Controllers
             );
 
             return Ok(new Points(sumDone,sum));
-        }
+        }//кількість очків виконані/всі
         [Authorize]
         [HttpPatch]
         [Route("{teamId}/updateTask")]
@@ -300,7 +300,7 @@ namespace Taskit_server.Controllers
             _taskRepository.Remove(task);
 
             return Ok();
-        }
+        }//видалити завдання
         [Authorize]
         [HttpPut]
         [Route("{teamId}/takeTask")]
@@ -332,7 +332,7 @@ namespace Taskit_server.Controllers
                     teamMembersInfo.Add(new TeamMemberInfo() { Name = user.Username, UserId = m.UserId, Roles = m.Roles });
             }
             return Ok(new TaskInfo(task, teamMembersInfo));
-        }
+        }//взяти собі завдання
         [Authorize]
         [HttpPut]
         [Route("{teamId}/giveTask")]
@@ -368,7 +368,7 @@ namespace Taskit_server.Controllers
                     teamMembersInfo.Add(new TeamMemberInfo() { Name = user.Username, UserId = m.UserId, Roles = m.Roles });
             }
             return Ok(new TaskInfo(task,teamMembersInfo));
-        }
+        }//дати комусь завдання, тік адмін може
         [Authorize]
         [HttpDelete]
         [Route("{teamId}/removeMember")]
@@ -391,6 +391,6 @@ namespace Taskit_server.Controllers
             _teamMemberRepository.Remove(member);
 
             return Ok("");
-        }
+        }//вигнати когось з команди
     }
 }
