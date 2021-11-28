@@ -5,6 +5,8 @@ import UserAvatar from '../user-avatar';
 import SearchMember from '../search-member';
 
 import './team-members.scss';
+import api from '../../utils/api';
+import {generateHeaders} from '../../utils/utils';
 
 const TeamMembers = () => {
   const [showAdd, setShowAdd] = useState(false);
@@ -12,9 +14,23 @@ const TeamMembers = () => {
     return teams.activeTeam?.name;
   });
 
+  const teamId = useSelector(({teams}) => teams.activeTeam?.id);
+  const token = useSelector(({user}) => user.token);
   const members = useSelector(({teams}) => {
     return teams.activeTeam?.teamMembers;
   });
+
+  const onMemberSelect = (_, user) => {
+    console.log(token);
+    api
+      .put(
+        `/team/${teamId}/addMember?memberId=${user}`,
+        {},
+        generateHeaders(token),
+      )
+      .then(({data}) => console.log(data))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -25,6 +41,7 @@ const TeamMembers = () => {
         >
           <SearchMember
             className="add-members__window"
+            selectHandler={onMemberSelect}
             onClick={(event) => event.stopPropagation()}
           />
         </div>
@@ -51,7 +68,6 @@ const TeamMembers = () => {
                 </li>
               ))
             }
-
             <li
               tabIndex={1}
               onClick={() => setShowAdd(true)}

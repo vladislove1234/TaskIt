@@ -13,18 +13,40 @@ import api from '../../utils/api';
 import {ActionCreator} from '../../redux/action-creator';
 
 import './team-tasks.scss';
+import ActiveTask from '../active-task/active-task';
 
+const TaskItem = ({task}) => {
+  const {name, price} = task;
+  const dispatch = useDispatch();
+
+  const onClick = (event) => {
+    event.preventDefault();
+    dispatch(ActionCreator.setActiveTask(task));
+  };
+
+  return (
+    <li
+      tabIndex={0}
+      onClick={onClick}
+      className="tabs__tasks-item">
+      <span className="tabs__tasks-title">{name}</span>
+      <span className="tabs__tasks-points">{price}</span>
+    </li>
+  );
+};
 
 const TeamTasks = () => {
   const dispatch = useDispatch();
   const teamId = useSelector(({teams}) => teams.activeTeam?.id);
-  const token = useSelector(({user}) => user.token);
-
   const tasks = useSelector(({teams}) => teams.activeTeam?.tasks || []);
+  const activeTask = useSelector(({teams}) => teams.activeTask);
+
+  const token = useSelector(({user}) => user.token);
 
   const tasksObject = [[], [], []];
   tasks.forEach((task) => tasksObject[task.state].push(task));
   const [todo, inProcces, done] = tasksObject;
+
 
   const [showAddTask, setShowAddTask] = useState(false);
   const [form, setForm] = useState({
@@ -82,6 +104,10 @@ const TeamTasks = () => {
       })
       .catch((error) => console.log(error));
   };
+
+  if (activeTask) {
+    return <ActiveTask task={activeTask} />;
+  }
 
   return (
     <>
@@ -173,13 +199,11 @@ const TeamTasks = () => {
 
           <ul className="tabs__tasks-list">
             {
-              todo.map(({name, price, id}) => (
-                <li className="tabs__tasks-item" key={id}>
-                  <span className="tabs__tasks-title">{name}</span>
-                  <span className="tabs__tasks-points">{price}</span>
-                </li>
-              ))
+              todo.map((task) => {
+                return <TaskItem task={task} key={task.id} />;
+              })
             }
+
             <li
               onClick={() => setShowAddTask(true)}
               className="tabs__tasks-item tabs__tasks-item--add"
@@ -196,12 +220,9 @@ const TeamTasks = () => {
 
           <ul className="tabs__tasks-list">
             {
-              inProcces.map(({name, price, id}) => (
-                <li className="tabs__tasks-item" key={id}>
-                  <span className="tabs__tasks-title">{name}</span>
-                  <span className="tabs__tasks-points">{price}</span>
-                </li>
-              ))
+              inProcces.map((task) => {
+                return <TaskItem task={task} key={task.id} />;
+              })
             }
           </ul>
         </div>
@@ -213,12 +234,9 @@ const TeamTasks = () => {
 
           <ul className="tabs__tasks-list">
             {
-              done.map(({name, price, id}) => (
-                <li className="tabs__tasks-item" key={id}>
-                  <span className="tabs__tasks-title">{name}</span>
-                  <span className="tabs__tasks-points">{price}</span>
-                </li>
-              ))
+              done.map((task) => {
+                return <TaskItem task={task} key={task.id} />;
+              })
             }
           </ul>
         </div>

@@ -27,6 +27,8 @@
   padding: 0;
   list-style: none;
   margin-top: 30px;
+  overflow-y: scroll;
+  max-height: 200px;
 }
 
 .search-member__member {
@@ -48,4 +50,10 @@
   margin-right: 0;
   font-weight: 300;
   font-size: 30px;
+}
+
+.search-member__empty {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 75%;
 }

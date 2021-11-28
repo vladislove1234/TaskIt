@@ -1,4 +1,4 @@
-import {USER_LOGIN, USER_LOGOUT} from './types';
+import {TEAMS_SET_ACTIVE_TASK, USER_LOGIN, USER_LOGOUT} from './types';
 import {
   TEAMS_SELECT_TEAM,
   TEAMS_ADD_TEAMS,
@@ -76,6 +76,11 @@ const teamsActions = {
   selectWindow: (window) => ({
     type: TEAMS_SELECT_WINDOW,
     payload: window,
+  }),
+
+  setActiveTask: (task) => ({
+    type: TEAMS_SET_ACTIVE_TASK,
+    payload: task,
   }),
 };
 

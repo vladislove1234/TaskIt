@@ -5,12 +5,14 @@ import {
   TEAMS_SELECT_WINDOW,
   TEAMS_SET_TASKS,
   TEAMS_ADD_TASK,
+  TEAMS_SET_ACTIVE_TASK,
 } from '../types';
 
 const initialState = {
   teams: [],
   activeTeam: null,
   activeTab: ``,
+  activeTask: null,
 };
 
 export default (state = initialState, action) => {
@@ -62,6 +64,12 @@ export default (state = initialState, action) => {
           ...state.activeTeam.tasks,
         ],
       },
+    };
+
+  case TEAMS_SET_ACTIVE_TASK:
+    return {
+      ...state,
+      activeTask: action.payload,
     };
   };
 

@@ -35,7 +35,7 @@ const CreateTeam = () => {
       .post(`/team/addTeam`, form, generateHeaders(token))
       .then(({data: team}) => {
         dispatch(ActionCreator.addTeam(team));
-        dispatch(ActionCreator.selectTeam(team.id));
+        dispatch(ActionCreator.selectTeam(team.id, token));
         dispatch(ActionCreator.setAppWindow(`team_tasks`));
       })
       .catch(({response}) => console.log(response.data));
@@ -62,6 +62,9 @@ const CreateTeam = () => {
 
         <SearchMember
           className="create-team__members"
+          selectHandler={(UsersId) => {
+            setForm((prevState) => ({...prevState, UsersId}));
+          }}
         />
 
         <button
