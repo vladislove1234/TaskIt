@@ -26,9 +26,26 @@ const MainPage = () => {
         </div>
       </header>
 
-      <section className="main">
+      <section className="quote">
+        <img src="./img/main-quote.svg" alt="Quote" />
 
+        <div>
+          <p className="quote__text">
+            our life is short <br /> it <span>shines</span> and fades.
+          </p>
+          <p className="quote__author">&copy; Mykhailo Kotsiubynsky</p>
+        </div>
+      </section>
 
+      <section className="about">
+        <div className="about__text">
+          TaskIT - your personal time manager. We guarantee visible
+          changes even after the first day of using! Here you can add
+          your mates to do tasks together, create different teams and
+          mark tasks in your own calendar. <Link to="/signup">try it now</Link>
+        </div>
+
+        <img src="./img/about.svg" alt="about" />
       </section>
     </>
   );

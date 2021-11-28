@@ -50,3 +50,49 @@
   margin-top: 85px;
   margin-right: 200px;
 }
+
+.quote {
+  padding: 185px 127px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quote__text {
+  font-weight: 600;
+  font-size: 96px;
+  line-height: 144px;
+  text-align: right;
+  color: #38436A;
+  margin: 0;
+
+  span {
+    color: var(--active-color)
+  }
+}
+
+.quote__author {
+  font-weight: 600;
+  font-size: 36px;
+  color: #38436A;
+  text-align: right;
+}
+
+.about {  
+  background: #38436A;
+  box-shadow: 0px 0px 55px 23px rgba(0, 0, 0, 0.25);
+  display: flex;
+  padding: 105px 90px;
+  align-items: center;
+}
+
+.about__text {
+  font-size: 36px;
+  line-height: 54px;
+  color: #FFFFFF;
+  margin-right: 50px;
+
+  a {
+    color: var(--active-color);
+  }
+}
