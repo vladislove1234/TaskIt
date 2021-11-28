@@ -8,6 +8,7 @@ import AppTabs from '../../components/app-tabs';
 import TimeLine from '../../components/time-line/time-line';
 
 import './app-page.scss';
+import Pomodoro from '../../components/pomodoro/pomodoro';
 
 const AppPage = () => {
   return (
@@ -35,6 +36,7 @@ const AppPage = () => {
         <AppTabs />
       </section>
 
+      <Pomodoro />
     </section>
   );
 };

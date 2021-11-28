@@ -1,0 +1,13 @@
+.pomodoro__wrapper {
+  position: relative;
+}
+
+.pomodoro__time {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: var(--contrast-color);
+  margin: 0;
+}

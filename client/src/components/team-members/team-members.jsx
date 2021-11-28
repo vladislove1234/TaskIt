@@ -63,7 +63,9 @@ const TeamMembers = () => {
                   <UserAvatar size={100} />
                   <div className="team-member__text">
                     <p className="team-member__name">{name}</p>
-                    <p className="team-member__role">{roles[0].name || null}</p>
+                    <p className="team-member__role">
+                      {roles[0]?.name || null}
+                    </p>
                   </div>
                 </li>
               ))

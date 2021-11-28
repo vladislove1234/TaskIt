@@ -33,16 +33,18 @@ const ActiveTask = ({task}) => {
         startTime: new Date(),
         color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
       }, generateHeaders(token))
-      .then(({data}) => console.log(data))
-      .catch((error) => console.log(error));
-
-    api
-      .patch(
-        `/team/${activeTeamId}/updateTask?taskId=${id}&taskState=1`,
-        {},
-        generateHeaders(token),
-      )
-      .then(({data}) => console.log(data))
+      .then(({data}) => {
+        console.log(data);
+        
+        api
+          .patch(
+            `/team/${activeTeamId}/updateTask?taskId=${id}&taskState=1`,
+            {},
+            generateHeaders(token),
+          )
+          .then(({data}) => console.log(data))
+          .catch((error) => console.log(error));
+      })
       .catch((error) => console.log(error));
   };
 

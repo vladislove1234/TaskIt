@@ -1,0 +1,34 @@
+<svg width="204" height="204" viewBox="0 0 204 204" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.6">
+<g filter="url(#filter0_i_71_325)">
+<circle cx="103" cy="102" r="87" fill="#2D3655"/>
+</g>
+<circle cx="103" cy="102" r="82.5" stroke="#252C45" stroke-width="9"/>
+</g>
+<line x1="103" y1="28" x2="103" y2="41" stroke="white" stroke-width="2"/>
+<line x1="103" y1="163" x2="103" y2="176" stroke="white" stroke-width="2"/>
+<line x1="103" y1="28" x2="103" y2="41" stroke="#F9A75C" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(1 0 0 -1 28.0002 101)" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(1 0 0 -1 163 101)" stroke="white" stroke-width="2"/>
+<line x1="155.327" y1="131.634" x2="166.585" y2="138.134" stroke="white" stroke-width="2"/>
+<line x1="38.4136" y1="64.1339" x2="49.6719" y2="70.6339" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(0.5 -0.866026 -0.866026 -0.5 64.1335 165.586)" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(0.5 -0.866026 -0.866026 -0.5 131.634 48.6724)" stroke="white" stroke-width="2"/>
+<line x1="133.366" y1="154.327" x2="139.866" y2="165.585" stroke="white" stroke-width="2"/>
+<line x1="65.8655" y1="37.4132" x2="72.3655" y2="48.6715" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(0.866025 -0.5 -0.5 -0.866025 37.4136 138.133)" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="13" y2="-1" transform="matrix(0.866025 -0.5 -0.5 -0.866025 154.327 70.6335)" stroke="white" stroke-width="2"/>
+<defs>
+<filter id="filter0_i_71_325" x="16" y="15" width="174" height="174" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="12" operator="erode" in="SourceAlpha" result="effect1_innerShadow_71_325"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_71_325"/>
+</filter>
+</defs>
+</svg>

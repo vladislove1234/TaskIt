@@ -4,7 +4,7 @@ import './team-chat.scss';
 
 const TeamChat = () => {
   return (
-    <p>TeamChat</p>
+    <img src="./img/chat.jpg" width={900} className="chat" />
   );
 };
 
