@@ -18,7 +18,17 @@ const AppTabs = () => {
     'team_chat': <TeamChat />,
   };
 
-  return windows[appWindow] || <p>it shines and fades</p>;
+  return windows[appWindow] || <div className="login__modal-text-wrapper">
+    <p className="login__modal-text login__modal-text--contrast">
+      our life is short <br />
+      it <span className="login__modal-text--accent">shines</span> and
+      fades.
+    </p>
+
+    <p className="login__modal-copyright">
+      &copy; Mykhailo Kotsiubynsky
+    </p>
+  </div>;
 };
 
 export default AppTabs;

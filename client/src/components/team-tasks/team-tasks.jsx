@@ -200,7 +200,7 @@ const TeamTasks = () => {
           <ul className="tabs__tasks-list">
             {
               todo.map((task) => {
-                return <TaskItem task={task} key={task.id} />;
+                return <TaskItem task={task} key={task.taskId} />;
               })
             }
 
@@ -221,7 +221,7 @@ const TeamTasks = () => {
           <ul className="tabs__tasks-list">
             {
               inProcces.map((task) => {
-                return <TaskItem task={task} key={task.id} />;
+                return <TaskItem task={task} key={task.taskId} />;
               })
             }
           </ul>
@@ -235,7 +235,7 @@ const TeamTasks = () => {
           <ul className="tabs__tasks-list">
             {
               done.map((task) => {
-                return <TaskItem task={task} key={task.id} />;
+                return <TaskItem task={task} key={task.taskId} />;
               })
             }
           </ul>

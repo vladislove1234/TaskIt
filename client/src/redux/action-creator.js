@@ -50,7 +50,7 @@ const teamsActions = {
       .then(({data}) => {
         dispatch({
           type: TEAMS_SELECT_TEAM,
-          payload: data,
+          payload: {...data, id: data.teamId},
         });
       });
 

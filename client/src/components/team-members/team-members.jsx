@@ -17,7 +17,7 @@ const TeamMembers = () => {
   const teamId = useSelector(({teams}) => teams.activeTeam?.id);
   const token = useSelector(({user}) => user.token);
   const members = useSelector(({teams}) => {
-    return teams.activeTeam?.teamMembers;
+    return teams.activeTeam?.members;
   });
 
   const onMemberSelect = (_, user) => {
@@ -58,12 +58,12 @@ const TeamMembers = () => {
         <div className="team-members__content">
           <ul className="team-members__list">
             {
-              members.map(({username, id}) => (
+              members.map(({name, id, roles}) => (
                 <li className="team-members__item" key={id}>
                   <UserAvatar size={100} />
                   <div className="team-member__text">
-                    <p className="team-member__name">{username}</p>
-                    <p className="team-member__role">???</p>
+                    <p className="team-member__name">{name}</p>
+                    <p className="team-member__role">{roles[0].name || null}</p>
                   </div>
                 </li>
               ))

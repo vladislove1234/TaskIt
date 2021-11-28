@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {ActionCreator} from '../../redux/action-creator';
 import api from '../../utils/api';
-import { generateHeaders } from '../../utils/utils';
+import {generateHeaders} from '../../utils/utils';
 import UserAvatar from '../user-avatar';
 
 import './active-task.scss';
@@ -11,7 +11,7 @@ import './active-task.scss';
 const mapState = [`to do`, `in procces`, `done`];
 
 const ActiveTask = ({task}) => {
-  const {price, name, state, content, performers, deadline, id} = task;
+  const {price, name, state, content, performers, deadline, taskId: id} = task;
   const dispatch = useDispatch();
 
   const activeTeamId = useSelector(({teams}) => teams.activeTeam?.id);
@@ -33,6 +33,15 @@ const ActiveTask = ({task}) => {
         startTime: new Date(),
         color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
       }, generateHeaders(token))
+      .then(({data}) => console.log(data))
+      .catch((error) => console.log(error));
+
+    api
+      .patch(
+        `/team/${activeTeamId}/updateTask?taskId=${id}&taskState=1`,
+        {},
+        generateHeaders(token),
+      )
       .then(({data}) => console.log(data))
       .catch((error) => console.log(error));
   };
@@ -80,7 +89,7 @@ const ActiveTask = ({task}) => {
                 team-members__item--add team-members__item--task"
                 >
                   <UserAvatar size={100} />
-                  <div className="team-member__text">{performer.username}</div>
+                  <div className="team-member__text">{performer.name}</div>
                 </li>
               ))
           }
