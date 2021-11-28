@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Taskit_server.Model.Entities;
 using Taskit_server.Model.Entities.RoleModels;
+using Taskit_server.Model.Entities.TakenTaskModels;
 using Taskit_server.Model.Entities.TaskModels;
 using Taskit_server.Model.Entities.TeamModels;
 using Taskit_server.Model.Entities.UserModels;
@@ -24,11 +25,13 @@ namespace Taskit_server.Controllers
         private readonly IRepository<TeamMember> _teamMemberRepository;
         private readonly IMapper _mapper;
         private readonly IRepository<Model.Entities.TaskModels.Task> _taskRepository;
+        private readonly IRepository<TakenTask> _takenTasksRepository;
         public TeamController(IRepository<Team> teamRepository,
             IUserService userService,
             IRepository<Role> roleRepository,
             IRepository<TeamMember> teamMemberRepository,
             IRepository<Model.Entities.TaskModels.Task> taskRepository,
+            IRepository<TakenTask> takenTasksRepository,
             IMapper mapper)
         {
             _teamRepository = teamRepository;
@@ -37,6 +40,7 @@ namespace Taskit_server.Controllers
             _teamMemberRepository = teamMemberRepository;
             _mapper = mapper;
             _taskRepository = taskRepository;
+            _takenTasksRepository = takenTasksRepository;
         }
         [Authorize]
         [HttpGet]
@@ -48,6 +52,14 @@ namespace Taskit_server.Controllers
             foreach (var team in author.Teams)
             {
                 var teamInfo = _mapper.Map<Team, TeamInfo>(team);
+                var members = new List<TeamMemberInfo>();
+                foreach(var member in team.TeamMembers)
+                {
+                    var user = _userService.GetById(member.UserId);
+                    if (user != null)
+                        members.Add(new TeamMemberInfo() { Name = user.Username, Roles = member.Roles, UserId = user.Id });
+                }
+                teamInfo.Members = members;
                 teams.Add(teamInfo);
             }
             return Ok(teams);
@@ -98,10 +110,11 @@ namespace Taskit_server.Controllers
                 return StatusCode(400);
 
             var teamMember = team.TeamMembers.Where(x => x.UserId == author.Id).FirstOrDefault();
-            if(teamMember == null && teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
+            if(teamMember == null || teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
                 return StatusCode(400);
 
             var role = await _roleRepository.Add(new Role() { Name = request.Name, Color = request.Color, IsAdmin = request.IsAdmin });
+
             team.Roles.Add(role);
             _teamRepository.Update(team);
 
@@ -153,10 +166,9 @@ namespace Taskit_server.Controllers
             {
                 var role = _roleRepository.GetById(roleid);
                 if (role != null && team.Roles.Where(x => x.Id == roleid).FirstOrDefault() == null)
-                {
                     roles.Add(role);
-                }
             }
+
             var task = await _taskRepository.Add(new Model.Entities.TaskModels.Task()
             {
                 Content = request.Content,
@@ -167,10 +179,13 @@ namespace Taskit_server.Controllers
                 Roles = roles,
                 Team = team
             });
+
             var members = team.TeamMembers.Where(x => x.Tasks.Where(t => t.Id == task.Id).FirstOrDefault() != null).ToList();
+
             team.Tasks.Add(task);
             _teamRepository.Update(team);
-             _taskRepository.Update(task);
+            _taskRepository.Update(task);
+
             var teamMembersInfo = new List<TeamMemberInfo>();
             foreach (var m in members)
             {
@@ -221,6 +236,27 @@ namespace Taskit_server.Controllers
         }
         [Authorize]
         [HttpGet]
+        [Route("{teamId}/getMembers")]
+        public async Task<IActionResult> GetMembers(int teamId)
+        {
+            var author = (User)HttpContext.Items["User"];
+            var team = _teamRepository.GetById(teamId);
+
+            if (team == null)
+                return StatusCode(400);
+
+            var members = new List<TeamMemberInfo>();
+            foreach (var member in team.TeamMembers)
+            {
+                var user = _userService.GetById(member.UserId);
+                if (user != null)
+                    members.Add(new TeamMemberInfo() { Name = user.Username, Roles = member.Roles, UserId = user.Id });
+            }
+
+            return Ok(members);
+        }
+        [Authorize]
+        [HttpGet]
         [Route("{teamId}/getTeam")]
         public async Task<IActionResult> GetTeam(int teamId)
         {
@@ -230,7 +266,17 @@ namespace Taskit_server.Controllers
             if (team == null)
                 return StatusCode(400);
 
-            return Ok(team);
+            var teamInfo = _mapper.Map<Team, TeamInfo>(team);
+            var members = new List<TeamMemberInfo>();
+            foreach (var member in team.TeamMembers)
+            {
+                var user = _userService.GetById(member.UserId);
+                if (user != null)
+                    members.Add(new TeamMemberInfo() { Name = user.Username, Roles = member.Roles, UserId = user.Id });
+            }
+            teamInfo.Members = members;
+
+            return Ok(teamInfo);
         }//вся інфа по тімі
         [Authorize]
         [HttpGet]
@@ -271,6 +317,7 @@ namespace Taskit_server.Controllers
             task.State = (TaskState)taskState;
 
             _taskRepository.Update(task);
+
             var members = team.TeamMembers.Where(x => x.Tasks.Where(t => t.Id == task.Id).FirstOrDefault() != null).ToList();
             var teamMembersInfo = new List<TeamMemberInfo>();
             foreach (var m in members)
@@ -298,13 +345,15 @@ namespace Taskit_server.Controllers
                 return StatusCode(400);
 
             _taskRepository.Remove(task);
+            team.Tasks.Remove(task);
+            _teamRepository.Update(team);
 
             return Ok();
         }//видалити завдання
         [Authorize]
         [HttpPut]
         [Route("{teamId}/takeTask")]
-        public async Task<IActionResult> TakeTask(int teamId, int taskId)
+        public async Task<IActionResult> TakeTask(int teamId, [FromBody] AddTakenTaskRequest request)
         {
             var author = (User)HttpContext.Items["User"];
             var team = _teamRepository.GetById(teamId);
@@ -312,7 +361,7 @@ namespace Taskit_server.Controllers
             if (team == null)
                 return StatusCode(400);
 
-            var task = team.Tasks.Where(t => t.Id == taskId).FirstOrDefault();
+            var task = team.Tasks.Where(t => t.Id == request.TaskId).FirstOrDefault();
             if (task == null)
                 return StatusCode(400);
 
@@ -320,55 +369,42 @@ namespace Taskit_server.Controllers
             if(teamMember == null)
                 return StatusCode(400);
 
-            task.Performers.Add(teamMember);
+            if(teamMember.UserId != author.Id)
+            {
+                if (teamMember == null && teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
+                    return StatusCode(400);
+            }
 
+            task.Performers.Add(teamMember);
             _taskRepository.Update(task);
+
+            var takenTask = new TakenTask()
+            {
+                Color = request.Color,
+                EndTime = request.EndTime,
+                StartTime = request.StartTime,
+                TaskId = task.Id
+            };
+
+            var user = _userService.GetById(request.MemberId);
+            if(user == null)
+                return StatusCode(400);
+            takenTask = await _takenTasksRepository.Add(takenTask);
+
+
+            user.TaskenTasks.Add(takenTask);
+            _userService.Update(user);
+
             var members = team.TeamMembers.Where(x => x.Tasks.Where(t => t.Id == task.Id).FirstOrDefault() != null).ToList();
             var teamMembersInfo = new List<TeamMemberInfo>();
             foreach (var m in members)
             {
-                var user = _userService.GetById(m.UserId);
-                if (user != null)
+                var use = _userService.GetById(m.UserId);
+                if (use != null)
                     teamMembersInfo.Add(new TeamMemberInfo() { Name = user.Username, UserId = m.UserId, Roles = m.Roles });
             }
             return Ok(new TaskInfo(task, teamMembersInfo));
         }//взяти собі завдання
-        [Authorize]
-        [HttpPut]
-        [Route("{teamId}/giveTask")]
-        public async Task<IActionResult> GiveTask(int teamId, int taskId, int memberId)
-        {
-            var author = (User)HttpContext.Items["User"];
-            var team = _teamRepository.GetById(teamId);
-
-            if (team == null)
-                return StatusCode(400);
-
-            var task = team.Tasks.Where(t => t.Id == taskId).FirstOrDefault();
-            if (task == null)
-                return StatusCode(400);
-
-            var teamMember = team.TeamMembers.Where(x => x.UserId == author.Id).FirstOrDefault();
-            if (teamMember == null && teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
-                return StatusCode(400);
-
-            var member = _teamMemberRepository.GetById(memberId);
-            if (member == null)
-                return StatusCode(400);
-
-            task.Performers.Add(member);
-
-            _taskRepository.Update(task);
-            var members = team.TeamMembers.Where(x => x.Tasks.Where(t => t.Id == task.Id).FirstOrDefault() != null).ToList();
-            var teamMembersInfo = new List<TeamMemberInfo>();
-            foreach(var m in members)
-            {
-                var user = _userService.GetById(m.UserId);
-                if (user != null)
-                    teamMembersInfo.Add(new TeamMemberInfo() { Name = user.Username, UserId = m.UserId, Roles = m.Roles });
-            }
-            return Ok(new TaskInfo(task,teamMembersInfo));
-        }//дати комусь завдання, тік адмін може
         [Authorize]
         [HttpDelete]
         [Route("{teamId}/removeMember")]
@@ -392,5 +428,44 @@ namespace Taskit_server.Controllers
 
             return Ok("");
         }//вигнати когось з команди
-    }
+        [Authorize]
+        [HttpGet]
+        [Route("{teamId}/getTakenTasks")]
+        public async Task<IActionResult> GetTakenTasks(int teamId)
+        {
+            var author = (User)HttpContext.Items["User"];
+            var team = _teamRepository.GetById(teamId);
+
+            var takenTasks = new List<TakenTaskInfo>();
+            foreach(var takentask in author.TaskenTasks)
+            {
+                var task = _taskRepository.GetById(takentask.TaskId);
+                if (task != null
+                    || (takentask.EndTime.DayOfYear == DateTime.Now.DayOfYear || takentask.StartTime.DayOfYear != DateTime.Now.DayOfYear)
+                    || task.Team.Id != teamId)
+                {
+                    var teamMembersInfo = new List<TeamMemberInfo>();
+                    foreach(var teamMember in task.Performers)
+                    {
+                        var user = _userService.GetById(teamMember.UserId);
+                        teamMembersInfo.Add(new TeamMemberInfo()
+                        {
+                            Name = user.Username,
+                            UserId = user.Id,
+                            Roles = teamMember.Roles
+                        });
+                    }
+                    var taskInfo = new TaskInfo(task,teamMembersInfo);
+                    takenTasks.Add(new TakenTaskInfo()
+                    {
+                        Color = takentask.Color,
+                        StartTime = takentask.StartTime,
+                        EndTime = takentask.EndTime,
+                        Task = taskInfo
+                    });
+                }
+            }
+            return Ok(takenTasks);
+        }
+    } 
 }
