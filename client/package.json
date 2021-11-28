@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "echo \"Running Front-End installation\" && npm install",
     "build": "echo \"Front-End Building\" && npx webpack --mode production",
-    "server": "echo \"Starting Front-End server\" && npx serve ./dist -p 8080",
+    "server": "echo \"Starting Front-End server\" && npx webpack serve --mode development --open",
     "dev": "npx webpack serve --mode development --open",
     "eslint": "npx eslint --ext .tsx --ext .ts --ext .jsx --ext .js src/",
     "start": "npm run prebuild && npm run build && npm run server",
