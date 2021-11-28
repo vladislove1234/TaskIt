@@ -96,3 +96,43 @@
     color: var(--active-color);
   }
 }
+
+.why {
+  display: flex;
+  padding: 180px 60px;
+
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+
+  div {
+    padding: 0 75px;
+  }
+}
+
+.why__title {
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 64px;
+  color: #F9A75C;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.why__text {
+  font-size: 36px;
+  line-height: 54px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.footer {
+  text-align: center;
+  padding: 200px 0;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FFFFFF;
+  background: #38436A;
+}

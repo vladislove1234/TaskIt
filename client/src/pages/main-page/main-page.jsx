@@ -47,6 +47,28 @@ const MainPage = () => {
 
         <img src="./img/about.svg" alt="about" />
       </section>
+
+      <section className="why">
+        <div>
+          <h3 className="why__title">pomodoro</h3>
+          <p className="why__text">pomodoro timer helps
+          to make work effective for longer duration of time since
+          1980’</p>
+
+          <img src="./img/pomodoro.svg" alt="pomodoro" />
+        </div>
+        <div>
+          <h3 className="why__title">scrum</h3>
+          <p className="why__text">we use SCRUM method to make our teamwork
+          faster and more productive </p>
+
+          <img src="./img/scrum.svg" alt="scrum" />
+        </div>
+      </section>
+
+      <footer className="footer">
+        <p>&copy; Sontsepoklonnyky, 2021</p>
+      </footer>
     </>
   );
 };
