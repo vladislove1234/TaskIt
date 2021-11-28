@@ -12,5 +12,6 @@ namespace Taskit_server.Services.Interfaces
         Task<UserAuthentificationResponse> Register(UserRegistrationRequest userModel);
         IEnumerable<User> GetAll();
         User GetById(int id);
+        void Update(User user);
     }
 }

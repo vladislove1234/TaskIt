@@ -1,21 +1,14 @@
-import {TEAMS_ADD_TEAMS, TEAMS_SELECT_TEAM} from '../types';
+import {
+  TEAMS_ADD_TEAM,
+  TEAMS_ADD_TEAMS,
+  TEAMS_SELECT_TEAM,
+  TEAMS_SELECT_WINDOW,
+} from '../types';
 
 const initialState = {
-  teams: [{
-    id: 1,
-    name: `sontsepoklonnyky`,
-  }, {
-    id: 2,
-    name: `karpaty`,
-  }, {
-    id: 3,
-    name: `team 3`,
-  }, {
-    id: 4,
-    name: `team 4`,
-  }],
-  activeTeam: 1,
-  activeWindow: `tasks`,
+  teams: [],
+  activeTeam: null,
+  activeTab: ``,
 };
 
 export default (state = initialState, action) => {
@@ -23,13 +16,30 @@ export default (state = initialState, action) => {
   case TEAMS_SELECT_TEAM:
     return {
       ...state,
+      activeTab: `tasks`,
       activeTeam: action.payload,
     };
-  
+
   case TEAMS_ADD_TEAMS:
-    const teams = action.payload || [];
-  
-    return {...state, teams};
+    return {
+      ...state,
+      teams: action.payload,
+    };
+
+  case TEAMS_SELECT_WINDOW:
+    return {
+      ...state,
+      activeTab: action.payload,
+    };
+
+  case TEAMS_ADD_TEAM:
+    return {
+      ...state,
+      teams: [
+        action.payload,
+        ...state.teams,
+      ],
+    };
   };
 
   return state;

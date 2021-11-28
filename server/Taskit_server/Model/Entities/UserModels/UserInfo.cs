@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Taskit_server.Model.Entities.TeamModels;
 
 namespace Taskit_server.Model.Entities.UserModels
 {
-    public class User : BaseEntity
+    public class UserInfo
     {
         [Required]
         public string Username { get; set; }
@@ -17,10 +14,6 @@ namespace Taskit_server.Model.Entities.UserModels
         [Required]
         public string Email { get; set; }
         [Required]
-        public string Password { get; set; }
-        [ForeignKey("FirendsId")]
-        public virtual List<User> Friends { get; set; }
-
-        public virtual List<Team> Teams { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 
 import UserInfo from '../../components/user-info';
 import TeamsList from '../../components/teams-list';
-
+import AppTabs from '../../components/app-tabs';
+import TimeLine from '../../components/time-line/time-line';
 
 import './app-page.scss';
 
@@ -27,6 +28,12 @@ const AppPage = () => {
           <TeamsList />
         </section>
       </aside>
+
+      <section className="app__content">
+        <TimeLine />
+
+        <AppTabs />
+      </section>
 
     </section>
   );

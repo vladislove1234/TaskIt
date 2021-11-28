@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Taskit_server.Model.Entities;
+using Taskit_server.Model.Entities.TeamModels;
 using Taskit_server.Model.Entities.UserModels;
 
 namespace Taskit_server.Db
@@ -12,6 +13,15 @@ namespace Taskit_server.Db
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
            
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                    .UseLazyLoadingProxies();
+            }
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

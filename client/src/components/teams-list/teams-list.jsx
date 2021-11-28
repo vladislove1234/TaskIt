@@ -2,6 +2,8 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {ActionCreator} from '../../redux/action-creator';
 
+import {TEAM_TABS} from '../../utils/consts';
+
 import './teams-list.scss';
 
 const TeamsList = () => {
@@ -9,11 +11,24 @@ const TeamsList = () => {
     return teams.teams.map(({id, name}) => ({id, name}));
   });
   const activeTeam = useSelector(({teams}) => teams.activeTeam);
+  const activeTab = useSelector(({app}) => app.window);
 
   const dispatch = useDispatch();
+
   const onTeamClick = (event, id) => {
     event.preventDefault();
     dispatch(ActionCreator.selectTeam(id));
+    dispatch(ActionCreator.setAppWindow(`team_tasks`));
+  };
+
+  const onTabClick = (event, tab) => {
+    event.preventDefault();
+    dispatch(ActionCreator.setAppWindow(`team_${tab}`));
+  };
+
+  const onAddClick = (event) => {
+    event.preventDefault();
+    dispatch(ActionCreator.setAppWindow(`createTeam`));
   };
 
 
@@ -23,26 +38,47 @@ const TeamsList = () => {
 
       <ul className="teams__list">
         {
-          teams.map(({id, name}) => (
+          teams.map(({id, name}, i) => (
             <li
               key={id}
-              tabIndex={1}
-              onClick={(event) => onTeamClick(event, id)}
               className={`teams__item 
                 ${id === activeTeam && `teams__item--active`}`}
             >
-              <span className="teams__item-text">{name}</span>
+              <span
+                tabIndex={1}
+                className="teams__item-text"
+                onClick={(event) => onTeamClick(event, id)}
+              >
+                {name}
+              </span>
+
               <div className="teams__item-buttons-wrapper">
-                <button className="teams__item-button">tasks</button>
-                <button className="teams__item-button">members</button>
-                <button className="teams__item-button">chat</button>
+                {
+                  TEAM_TABS.map((tab) => (
+                    <button
+                      key={tab + i}
+                      onClick={(event) => onTabClick(event, tab)}
+                      className={
+                        `teams__item-button 
+                        ${`team_${tab}` === activeTab &&
+                         `teams__item-button--active`}`
+                      }
+                    >{tab}</button>
+                  ))
+                }
               </div>
             </li>
           ))
         }
 
         <li className="teams__item teams__item--add-team">
-          <span className="teams__item-text">+ add team</span>
+          <span
+            tabIndex={0}
+            onClick={onAddClick}
+            className="teams__item-text"
+          >
+            + add team
+          </span>
         </li>
       </ul>
     </div>

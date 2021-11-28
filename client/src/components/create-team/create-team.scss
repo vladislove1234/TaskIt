@@ -1,0 +1,51 @@
+.create-team {
+  width: 70%;
+  background: var(--contrast-color);
+  min-height: 600px;
+  margin: 0 auto;
+  box-shadow: 7px 11px 31px -8px rgba(0, 0, 0, 0.25);
+  border-radius: 39px;
+  overflow: hidden;
+}
+
+.create-team__header {
+  background: var(--active-color);
+}
+
+.create-team__title {
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  color: var(--contrast-color);
+  padding: 22px 0;
+  margin: 0;
+}
+
+.create-team__container {
+  padding: 44px 26px;
+}
+
+.create-team__title-input {
+  width: 100%;
+  padding: 10px 25px;
+  border: none;
+  border-bottom: 1px solid #878787;
+  margin-bottom: 30px;
+}
+
+.create-team__create {
+  background: var(--active-color);
+  box-shadow: 6px 8px 11px -2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 11px 118px;
+  border: 0;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--contrast-color);
+  margin: 15px auto 0;
+  display: block;
+}
+
+.create-team__members {
+  margin: 0 auto;
+}

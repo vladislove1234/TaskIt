@@ -1,0 +1,74 @@
+.tabs__tasks-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.tabs__tasks {
+  background: var(--contrast-color);
+  width: 30%;
+  box-shadow: 7px 11px 31px -8px rgba(0, 0, 0, 0.25);
+  min-height: 600px;
+  border-radius: 39px;
+}
+
+.tabs__tasks-header {
+  border-radius: 39px 39px 0 0;
+  background: var(--active-color);
+}
+
+.tabs__tasks-header-title {
+  font-weight: 600;
+  font-size: 18px;
+
+  color: var(--contrast-color);
+  margin: 0;
+  text-align: center;
+  padding: 53px 0 5px;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 70%;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: url("../img/bg/calendar-stripe.png");
+    background-repeat: repeat;
+    background-size: auto 100%;
+  }
+}
+
+.tabs__tasks-list {
+  margin: 0;
+  padding: 12px 0;
+  list-style: none;
+}
+
+.tabs__tasks-item {
+  font-weight: 300;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  transition: color .5s;
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 14px;
+  transition: all .4s;
+  background: var(--contrast-color);
+  margin-bottom: 5px;
+
+  &:hover {
+    color: var(--active-color);
+    box-shadow: 0px 7px 8px -2px rgba(0, 0, 0, 0.25);
+    transform: scale(1.07);
+  }
+
+  &--add {
+    color: #B0ACAC;
+  }
+}

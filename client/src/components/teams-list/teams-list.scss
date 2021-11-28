@@ -61,4 +61,27 @@
   width: auto;
   padding: 0;
   margin-bottom: 21px;
+  transition: all .4s;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--active-color);
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    transition: all .4s;
+  }
+
+  &--active {
+    color: var(--active-color);
+
+    &::before {
+      width: 110%;
+    }
+  }
 }

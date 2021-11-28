@@ -33,6 +33,13 @@ namespace Taskit_server.Services
 
             return result;
         }
+        public void Update(T entity)
+        {
+            var element = GetById(entity.Id);
+            element = entity;
+            _context.Set<T>().Update(element);
+            _context.SaveChanges();
+        }
 
         public async Task<long> Add(T entity)
         {
