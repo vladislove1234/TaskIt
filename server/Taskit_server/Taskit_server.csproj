@@ -27,6 +27,7 @@
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <None Remove="Microsoft.EntityFrameworkCore.Proxies" />
     <None Remove="Model\Entities\RoleModels\" />
+    <None Remove="Model\Entities\TakenTask\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -42,6 +43,7 @@
     <Folder Include="Model\Entities\TeamModels\" />
     <Folder Include="Model\Entities\TaskModels\" />
     <Folder Include="Model\Entities\RoleModels\" />
+    <Folder Include="Model\Entities\TakenTaskModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.1" />

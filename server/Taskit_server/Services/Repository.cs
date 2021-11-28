@@ -54,5 +54,17 @@ namespace Taskit_server.Services
             _context.Set<T>().Remove(element);
             _context.SaveChanges();
         }
+
+        public ICollection<T> GetByIds(params int[] Ids)
+        {
+            var list = new List<T>();
+            foreach(int Id in Ids)
+            {
+                var entity = GetById(Id);
+                if (entity != null)
+                    list.Add(entity);
+            }
+            return list;
+        }
     }
 }
