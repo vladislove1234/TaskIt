@@ -110,7 +110,7 @@ namespace Taskit_server.Controllers
                 return StatusCode(400);
 
             var teamMember = team.TeamMembers.Where(x => x.UserId == author.Id).FirstOrDefault();
-            if(teamMember == null && teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
+            if(teamMember == null || teamMember.Roles.Where(x => x.IsAdmin).FirstOrDefault() == null)
                 return StatusCode(400);
 
             var role = await _roleRepository.Add(new Role() { Name = request.Name, Color = request.Color, IsAdmin = request.IsAdmin });
@@ -233,6 +233,27 @@ namespace Taskit_server.Controllers
                 return StatusCode(400);
 
             return Ok(team.Roles);
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("{teamId}/getMembers")]
+        public async Task<IActionResult> GetMembers(int teamId)
+        {
+            var author = (User)HttpContext.Items["User"];
+            var team = _teamRepository.GetById(teamId);
+
+            if (team == null)
+                return StatusCode(400);
+
+            var members = new List<TeamMemberInfo>();
+            foreach (var member in team.TeamMembers)
+            {
+                var user = _userService.GetById(member.UserId);
+                if (user != null)
+                    members.Add(new TeamMemberInfo() { Name = user.Username, Roles = member.Roles, UserId = user.Id });
+            }
+
+            return Ok(members);
         }
         [Authorize]
         [HttpGet]
