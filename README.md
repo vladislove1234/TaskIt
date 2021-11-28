@@ -6,10 +6,10 @@ Welcome to the main repository of _TaskIt_.
 
 ## How to run
 ### _Installation_
-For back-end:
+For back-end:                 
 Install [ASP.NET](https://dotnet.microsoft.com/download/dotnet/3.1) 
 and [MSSql Server 2019](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
-For front-end:
+For front-end:                  
 Install [Node.js and npm](https://nodejs.org/en/).
 ### _Start_
 If you start app at first time, you need run these commands to setup db:
