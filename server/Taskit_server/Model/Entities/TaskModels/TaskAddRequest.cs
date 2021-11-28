@@ -8,15 +8,17 @@ namespace Taskit_server.Model.Entities.TaskModels
 {
     public class TaskAddRequest
     {
-        private User author;
-
+        [Required]
+        public string Name { get; set; }
         [Required]
         public string Content { get; set; }
         [Required]
-        public virtual User Author { get => author; set => author = value; }
+        public int Price { get; set; }
         [Required]
-        public virtual Team Team { get; set; }
+        public List<int> PerformersId { get; set; }
         [Required]
-        public virtual List<User> Performers { get; set; }
+        public List<int> RolesId { get; set; }
+        [Required]
+        public DateTime Deadline { get; set; }
     }
 }

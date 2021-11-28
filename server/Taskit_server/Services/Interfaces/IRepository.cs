@@ -12,5 +12,6 @@ namespace Taskit_server.Services.Interfaces
         T GetById(int Id);
         Task<T> Add(T entity);
         void Update(T entity);
+        void Remove(T entity);
     }
 }

@@ -48,5 +48,11 @@ namespace Taskit_server.Services
             return result.Entity;
         }
 
+        public void Remove(T entity)
+        {
+            var element = GetById(entity.Id);
+            _context.Set<T>().Remove(element);
+            _context.SaveChanges();
+        }
     }
 }

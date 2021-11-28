@@ -10,7 +10,7 @@ namespace Taskit_server.Model.Entities.UserModels
     {
         [Required]
         public int UserId { get; set; }
-        [Required]
+        
         public virtual List<Role> Roles
         {
             get
@@ -25,7 +25,7 @@ namespace Taskit_server.Model.Entities.UserModels
             }
         }
         private List<Role> _roles;
-        [Required]
+        
         public virtual List<Task> Tasks
         {
             get

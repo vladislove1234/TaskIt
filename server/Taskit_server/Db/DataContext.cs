@@ -30,6 +30,7 @@ namespace Taskit_server.Db
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
         }
     }
 }

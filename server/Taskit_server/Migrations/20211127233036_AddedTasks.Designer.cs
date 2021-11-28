@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Taskit_server.Db;
 
 namespace Taskit_server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211127233036_AddedTasks")]
+    partial class AddedTasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,9 +55,6 @@ namespace Taskit_server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TaskId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
@@ -63,8 +62,6 @@ namespace Taskit_server.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TaskId");
 
                     b.HasIndex("TeamId");
 
@@ -82,13 +79,6 @@ namespace Taskit_server.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Deadline")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -206,10 +196,6 @@ namespace Taskit_server.Migrations
 
             modelBuilder.Entity("Taskit_server.Model.Entities.RoleModels.Role", b =>
                 {
-                    b.HasOne("Taskit_server.Model.Entities.TaskModels.Task", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("TaskId");
-
                     b.HasOne("Taskit_server.Model.Entities.TeamModels.Team", null)
                         .WithMany("Roles")
                         .HasForeignKey("TeamId");
@@ -249,11 +235,6 @@ namespace Taskit_server.Migrations
                     b.HasOne("Taskit_server.Model.Entities.UserModels.User", null)
                         .WithMany("Friends")
                         .HasForeignKey("FirendsId");
-                });
-
-            modelBuilder.Entity("Taskit_server.Model.Entities.TaskModels.Task", b =>
-                {
-                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("Taskit_server.Model.Entities.TeamModels.Team", b =>
