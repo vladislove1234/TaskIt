@@ -21,7 +21,10 @@ dotnet ef database update
 To run an application, you need to open terminal in project folder and run these two commands:
 ```sh
 cd client
-npm run app
+npm run dev
+
+cd ../server/TaskIt_server
+dotnet run --project Taskit_server.csproj 
 ```
 After these commands:
 - Back-End server will be started at port 5001;
