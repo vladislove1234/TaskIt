@@ -21,7 +21,7 @@ const Pomodoro = () => {
 
         if (seconds < 0) {
           setState((pauseState) => pauseState === `work` ? `rest` : `work`);
-          return setTimer({
+          return setTime({
             seconds: REST_TIME,
             formatedTime: `05:00`,
           });
