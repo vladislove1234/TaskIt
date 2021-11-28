@@ -10,7 +10,8 @@ namespace Taskit_server.Services.Interfaces
     {
         IEnumerable<T> GetAll();
         T GetById(int Id);
-        Task<long> Add(T entity);
+        Task<T> Add(T entity);
         void Update(T entity);
+        void Remove(T entity);
     }
 }

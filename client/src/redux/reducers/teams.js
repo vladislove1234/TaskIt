@@ -3,6 +3,8 @@ import {
   TEAMS_ADD_TEAMS,
   TEAMS_SELECT_TEAM,
   TEAMS_SELECT_WINDOW,
+  TEAMS_SET_TASKS,
+  TEAMS_ADD_TASK,
 } from '../types';
 
 const initialState = {
@@ -39,6 +41,27 @@ export default (state = initialState, action) => {
         action.payload,
         ...state.teams,
       ],
+    };
+
+  case TEAMS_SET_TASKS:
+    return {
+      ...state,
+      activeTeam: {
+        ...state.activeTeam,
+        tasks: action.payload,
+      },
+    };
+
+  case TEAMS_ADD_TASK:
+    return {
+      ...state,
+      activeTeam: {
+        ...state.activeTeam,
+        tasks: [
+          action.payload,
+          ...state.activeTeam.tasks,
+        ],
+      },
     };
   };
 

@@ -41,12 +41,18 @@ namespace Taskit_server.Services
             _context.SaveChanges();
         }
 
-        public async Task<long> Add(T entity)
+        public async Task<T> Add(T entity)
         {
             var result = await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
-            return result.Entity.Id;
+            return result.Entity;
         }
 
+        public void Remove(T entity)
+        {
+            var element = GetById(entity.Id);
+            _context.Set<T>().Remove(element);
+            _context.SaveChanges();
+        }
     }
 }

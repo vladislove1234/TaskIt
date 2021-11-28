@@ -9,11 +9,11 @@ import './team-members.scss';
 const TeamMembers = () => {
   const [showAdd, setShowAdd] = useState(false);
   const teamName = useSelector(({teams}) => {
-    return teams.teams.find(({id}) => id === teams.activeTeam).name;
+    return teams.activeTeam?.name;
   });
 
   const members = useSelector(({teams}) => {
-    return teams.teams.find(({id}) => id === teams.activeTeam).users;
+    return teams.activeTeam?.teamMembers;
   });
 
   return (

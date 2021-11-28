@@ -29,6 +29,7 @@ namespace Taskit_server
             services.AddDbContext<DataContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(TeamProfile));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddCors();
             services.AddMvc().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

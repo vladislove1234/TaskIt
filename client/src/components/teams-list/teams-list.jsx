@@ -10,14 +10,15 @@ const TeamsList = () => {
   const teams = useSelector(({teams}) => {
     return teams.teams.map(({id, name}) => ({id, name}));
   });
-  const activeTeam = useSelector(({teams}) => teams.activeTeam);
+  const activeTeam = useSelector(({teams}) => teams.activeTeam?.id);
   const activeTab = useSelector(({app}) => app.window);
+  const token = useSelector(({user}) => user.token);
 
   const dispatch = useDispatch();
 
   const onTeamClick = (event, id) => {
     event.preventDefault();
-    dispatch(ActionCreator.selectTeam(id));
+    dispatch(ActionCreator.selectTeam(id, token));
     dispatch(ActionCreator.setAppWindow(`team_tasks`));
   };
 
@@ -38,11 +39,11 @@ const TeamsList = () => {
 
       <ul className="teams__list">
         {
-          teams.map(({id, name}, i) => (
+          teams.map(({id, name}) => (
             <li
               key={id}
               className={`teams__item 
-                ${id === activeTeam && `teams__item--active`}`}
+                  ${id === activeTeam && `teams__item--active`}`}
             >
               <span
                 tabIndex={1}
@@ -56,12 +57,12 @@ const TeamsList = () => {
                 {
                   TEAM_TABS.map((tab) => (
                     <button
-                      key={tab + i}
+                      key={tab + id}
                       onClick={(event) => onTabClick(event, tab)}
                       className={
                         `teams__item-button 
-                        ${`team_${tab}` === activeTab &&
-                         `teams__item-button--active`}`
+                          ${`team_${tab}` === activeTab &&
+                           `teams__item-button--active`}`
                       }
                     >{tab}</button>
                   ))
