@@ -2,7 +2,7 @@
 Welcome to the main repository of _TaskIt_.
 
 ## About
-TaskIt is application to plan tasks. It allows to create teams and manage tasks for each member. We create this application in context of Hackathon for first-year students (LPNU). 
+TaskIt is application to plan tasks. It allows to create teams and manage tasks for each member. We have created this application in context of Hackathon for first-year students (LPNU). 
 
 ## How to run
 ### _Installation_
